@@ -1,0 +1,27 @@
+{
+  "name": "lostandfound",
+  "version": "1.0.0",
+  "description": "an app to help connect people who have lost something with people who have found it",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CharmingChimps/lostandfound.git"
+  },
+  "keywords": [
+    "lost",
+    "and",
+    "found"
+  ],
+  "author": "Alec Chetan Chao Walter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CharmingChimps/lostandfound/issues"
+  },
+  "homepage": "https://github.com/CharmingChimps/lostandfound#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
