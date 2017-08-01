@@ -14,7 +14,11 @@ class FoundItemsEntry extends React.Component {
 }
 
 FoundItemsEntry.propTypes = {
+<<<<<<< HEAD
   name: React.PropTypes.String.isRequired
+=======
+  name: React.PropTypes.string.isRequired
+>>>>>>> dash-FoundItem
 };
 
 export default FoundItemsEntry;
