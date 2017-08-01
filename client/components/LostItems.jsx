@@ -26,7 +26,7 @@ const fakeLostItems = [
   },
 ];
 
-class LostItemsList extends React.Component {
+class LostItems extends React.Component {
   render() {
     return (
       <div>
@@ -47,4 +47,4 @@ class LostItemsList extends React.Component {
   }
 }
 
-export default LostItemsList;
+export default LostItems;
