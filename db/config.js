@@ -1,0 +1,55 @@
+const mongoose = require('mongoose');
+
+const Schema = mongoose.schema;
+
+const type = Schema.Types;
+
+const UserSchema = new Schema({
+  username: String,
+  password: String,
+  email: String,
+  name: String,
+});
+
+const User = mongoose.model('User', UserSchema);
+module.exports.user = User;
+
+const LostSchema = new Schema({
+  user_id: { type: type.ObjectId, ref: 'User' },
+  location: String,
+  description: {
+    name: String,
+    brand: String,
+    color: String,
+    condition: Number,
+    size: String,
+  },
+  returned: Boolean,
+});
+
+const Lost = mongoose.model('Lost', LostSchema);
+module.exports.lost = Lost;
+
+const FoundSchema = new Schema({
+  user_id: { type: type.ObjectId, ref: 'User' },
+  location: String,
+  description: {
+    name: String,
+    brand: String,
+    color: String,
+    condition: Number,
+    size: String,
+  },
+  returned: Boolean,
+});
+
+const Found = mongoose.model('Found', FoundSchema);
+module.exports.found = Found;
+
+const MatchSchema = new Schema({
+  found_id: { type: type.ObjectId, ref: 'Found' },
+  lost_id: { type: type.ObjectId, ref: 'Lost' },
+});
+
+const Match = mongoose.model('Match', MatchSchema);
+module.exports.match = Match;
