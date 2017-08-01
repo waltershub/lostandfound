@@ -1,7 +1,7 @@
 import React from 'react';
 import MenuBar from './MenuBar.jsx';
 import FoundItems from './FoundItems.jsx';
-import LostItems from './LostItemsList.jsx';
+import LostItems from './LostItems.jsx';
 
 class App extends React.Component {
   render() {
