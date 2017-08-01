@@ -6,6 +6,7 @@ class MenuBar extends React.Component {
       display: 'flex',
       justifyContent: 'space-around'
     };
+
     return (
       <div style={barStyle}>
         <h1>LOST AND FOUND</h1>
