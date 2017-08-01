@@ -1,6 +1,7 @@
 import React from 'react';
 import MenuBar from './MenuBar.jsx';
 import FoundItems from './FoundItems.jsx';
+import LostItems from './LostItemsList.jsx';
 
 class App extends React.Component {
   render() {
@@ -8,6 +9,7 @@ class App extends React.Component {
       <div>
         <MenuBar />
         <FoundItems />
+        <LostItems />
       </div>
     );
   }
