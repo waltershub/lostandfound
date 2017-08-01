@@ -1,12 +1,13 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
-var entryPath = path.resolve(__dirname, 'client/main.jsx');
-var outputPath = path.resolve(__dirname, 'client/')
+const mainPath = path.resolve(__dirname, 'client/main.jsx');
+const componentsPath = path.resolve(__dirname, 'client/components');
+const outputPath = path.resolve(__dirname, 'client/compiled');
 
 
 const config = {
-  entry: entryPath,
+  entry: [mainPath, componentsPath + '/App.jsx'],
 
   output: {
     path: outputPath,
