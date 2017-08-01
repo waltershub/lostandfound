@@ -33,6 +33,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "mongoose": "^4.11.5",
+    "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "path": "^0.12.7",
     "react": "^15.6.1",

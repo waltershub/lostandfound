@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.schema;
+const Schema = mongoose.Schema;
 
-const type = Schema.Types;
 
 const UserSchema = new Schema({
   username: String,
@@ -15,7 +14,7 @@ const User = mongoose.model('User', UserSchema);
 module.exports.user = User;
 
 const LostSchema = new Schema({
-  user_id: { type: type.ObjectId, ref: 'User' },
+  user_id: { type: Schema.Types.ObjectId, ref: 'User' },
   location: String,
   description: {
     name: String,
@@ -31,7 +30,7 @@ const Lost = mongoose.model('Lost', LostSchema);
 module.exports.lost = Lost;
 
 const FoundSchema = new Schema({
-  user_id: { type: type.ObjectId, ref: 'User' },
+  user_id: { type: Schema.Types.ObjectId, ref: 'User' },
   location: String,
   description: {
     name: String,
@@ -47,8 +46,8 @@ const Found = mongoose.model('Found', FoundSchema);
 module.exports.found = Found;
 
 const MatchSchema = new Schema({
-  found_id: { type: type.ObjectId, ref: 'Found' },
-  lost_id: { type: type.ObjectId, ref: 'Lost' },
+  found_id: { type: Schema.Types.ObjectId, ref: 'Found' },
+  lost_id: { type: Schema.Types.ObjectId, ref: 'Lost' },
 });
 
 const Match = mongoose.model('Match', MatchSchema);
