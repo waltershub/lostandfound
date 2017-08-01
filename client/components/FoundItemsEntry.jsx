@@ -14,7 +14,7 @@ class FoundItemsEntry extends React.Component {
 }
 
 FoundItemsEntry.propTypes = {
-  name: React.PropTypes.String.isRequired
+  name: React.PropTypes.string.isRequired
 };
 
 export default FoundItemsEntry;
