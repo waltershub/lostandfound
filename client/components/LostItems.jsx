@@ -1,5 +1,5 @@
 import React from 'react';
-import LostItemEntry from './LostItemEntry.jsx';
+import LostItemsEntry from './LostItemsEntry.jsx';
 
 const fakeLostItems = [
   {
@@ -30,17 +30,14 @@ class LostItems extends React.Component {
   render() {
     return (
       <div>
-        <h1>Lost Items List</h1>
-        {
-          // iterate through all items
-          // pass them into lost item entry
-          fakeLostItems.map(elem => (
-            <LostItemEntry
-              itemName={elem.description.name}
-              itemColor={elem.description.color}
-              itemReturned={elem.returned}
-            />
-          ))
+        <h2>Lost Items List</h2>
+        {fakeLostItems.map(elem => (
+          <LostItemEntry
+            itemName={elem.description.name}
+            itemColor={elem.description.color}
+            itemReturned={elem.returned}
+          />
+        ))
         }
       </div>
     );
