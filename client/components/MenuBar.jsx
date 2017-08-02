@@ -2,9 +2,9 @@ import React from 'react';
 
 class MenuBar extends React.Component {
   render() {
-    var barStyle = {
+    const barStyle = {
       display: 'flex',
-      justifyContent: 'space-around'
+      justifyContent: 'space-around',
     };
 
     return (
@@ -15,7 +15,7 @@ class MenuBar extends React.Component {
         <button>Account Info</button>
         <p>usericon</p>
       </div>
-    )
+    );
   }
 }
 
