@@ -52,3 +52,13 @@ const MatchSchema = new Schema({
 
 const Match = mongoose.model('Match', MatchSchema);
 module.exports.match = Match;
+
+const MessagesSchema = new Schema({
+  user_id: { type: Schema.Types.ObjectId, ref: 'User' },
+  text: String,
+  date: { type: Date, default: Date.now },
+  to_user_id: { type: Schema.Types.ObjectId, ref: 'User' },
+});
+
+const messages = mongoose.model('Messages', MessagesSchema);
+module.exports.messages = messages;
