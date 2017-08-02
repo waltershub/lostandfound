@@ -11,6 +11,13 @@ router.post('/login', auth, (req, res) => {
 });
 
 router.post('/lostitem', requestHandlers.postLostItem);
+router.post('/founditem', requestHandlers.postFoundItem);
 
+router.post('/messages', requestHandlers.postMessages);
+router.get('/messages', requestHandlers.getMessages);
+
+router.get('/matches', requestHandlers.getMatches);
+
+router.get('/dashdata', requestHandlers.getDashData);
 
 module.exports.router = router;
