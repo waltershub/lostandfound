@@ -2,7 +2,7 @@ const db = require('../../../db/config');
 
 const bcrypt = require('bcrypt');
 
-exports.signup = (req, res) => {
+module.exports = (req, res) => {
   const userdata = Object.assign({}, req.body);
   const username = userdata.username;
   db.user.findOne({ username }, (err, person) => {
