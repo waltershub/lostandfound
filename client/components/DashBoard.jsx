@@ -1,13 +1,17 @@
-import { React, Component } from 'react';
+import React from 'react';
 import FoundItems from './FoundItems.jsx';
 import LostItems from './LostItems.jsx';
+import MenuBar from './MenuBar.jsx';
 
-class DashBoard extends Component {
+class DashBoard extends React.Component {
   render() {
     return (
       <div>
-        <FoundItems />
-        <LostItems />
+        <MenuBar />
+        <div>
+          <FoundItems />
+          <LostItems />
+        </div>
       </div>
     );
   }
