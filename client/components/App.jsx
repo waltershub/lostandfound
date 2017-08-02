@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import DashBoard from './DashBoard.jsx';
 import Login from './Login.jsx';
+import ItemForm from './ItemForm.jsx';
+import Master from './Master.jsx';
 
 const fakeAuth = {
   loggedIn: false,
@@ -25,7 +27,7 @@ class App extends React.Component {
               fakeAuth.loggedIn ? (
                 <Redirect to="/dash" />
               ) : (
-                <Login />
+                <Master />
               )
             )}
           />
