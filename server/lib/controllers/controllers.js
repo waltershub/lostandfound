@@ -2,9 +2,8 @@ const db = require('../../../db/config');
 
 const bcrypt = require('bcrypt');
 
-exports.signup = (data, callback) => {
-  let res = '';
-  const userdata = Object.assign({}, data);
+exports.signup = (req, res) => {
+  const userdata = Object.assign({}, req.body);
   const username = userdata.username;
   db.user.findOne({ username }, (err, person) => {
     if (err) throw err;
@@ -14,13 +13,11 @@ exports.signup = (data, callback) => {
         userdata.password = hash;
         db.user.create(userdata, (error) => {
           if (error) throw error;
-          res = 'success on sign up post';
+          res.send('success on sign up post');
         });
       });
     } else {
-      res = 'already exits';
+      res.send('already exits');
     }
-    console.log('res is', res);
-    callback(res);
   });
 };
