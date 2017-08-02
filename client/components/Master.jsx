@@ -5,6 +5,7 @@ import Login from './Login.jsx';
 import App from './App.jsx';
 import ItemForm from './ItemForm.jsx';
 import SignUp from './SignUp.jsx';
+import Messenger from './Messenger.jsx';
 
 class Master extends React.Component {
   render() {
@@ -17,12 +18,14 @@ class Master extends React.Component {
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/itemform">ItemForm</Link></li>
             <li><Link to="/dashboard">Dash</Link></li>
+            <li><Link to="/messages">Messages</Link></li>
           </ul>
           <Route path="/app" component={App} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
           <Route path="/itemform" component={ItemForm} />
           <Route path="/dashboard" component={DashBoard} />
+          <Route path="/messages" component={Messenger} />
         </div>
       </Router>
     );
