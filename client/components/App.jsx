@@ -1,15 +1,15 @@
 import React from 'react';
-import MenuBar from './MenuBar.jsx';
-import FoundItems from './FoundItems.jsx';
-import LostItems from './LostItems.jsx';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <MenuBar />
-        <FoundItems />
-        <LostItems />
+        <div>
+          {this.props.topbar}
+        </div>
+        <div>
+          {this.props.main}
+        </div>
       </div>
     );
   }
