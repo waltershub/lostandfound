@@ -32,7 +32,7 @@ class LostItems extends React.Component {
       <div>
         <h2>Lost Items List</h2>
         {fakeLostItems.map(elem => (
-          <LostItemEntry
+          <LostItemsEntry
             itemName={elem.description.name}
             itemColor={elem.description.color}
             itemReturned={elem.returned}
