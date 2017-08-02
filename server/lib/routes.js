@@ -1,9 +1,8 @@
 const express = require('express');
 const db = require('../../db/config');
 const controller = require('../lib/controllers/controllers');
-
 const router = express.Router();
-
+const {auth} = require('../lib/controller/auth')
 
 router.post('/', (req, res) => {
   console.log('success on index');
@@ -11,22 +10,10 @@ router.post('/', (req, res) => {
 });
 
 
-router.post('/signup', (req, res) => {
-  // const username = req.body.username;
-  // db.user.findOne({ username }, (err, person) => {
-  //   if (err) throw err;
-  //
-  //   else if (!person) {
-  //     db.user.create(req.body, (error) => {
-  //       if (error) throw error;
-  //       res.send('success on sign up post');
-  //     });
-  //   }
-  // });
-  controller.signup(req.body, (resolution) => {
-    console.log('dam', resolution);
-    res.send(resolution);
-  });
+router.post('/signup', controller.signup);
+
+router.post('/login', auth, (null, user) =>{
+  res.send(null , user)
 });
 
 router.post('/lostitem', (req, res) => {
