@@ -6,8 +6,8 @@ const { auth } = require('./controllers/auth');
 
 router.post('/signup', signupHandler);
 
-router.post('/login', auth, (err, user) =>{
-  res.send(null , user)
+router.post('/login', auth, (req, res) => {
+
 });
 
 router.post('/lostitem', requestHandlers.postLostItem);
