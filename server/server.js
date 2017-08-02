@@ -3,8 +3,7 @@ const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const { router } = require('./lib/routes');
-const passport = require('passport');
-
+const passport = require('./lib/controllers/auth');
 // const db = require('..db/config.js');
 mongoose.connect('mongodb://dbadmin:hrnyc9@ds129053.mlab.com:29053/hrnyc9lostandfound', {
   useMongoClient: true,
@@ -18,7 +17,6 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('./client'));
-
 app.use('/', router);
 
 app.listen(port, (err) => {
