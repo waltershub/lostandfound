@@ -1,29 +1,22 @@
 const express = require('express');
-const db = require('../../db/config');
-const controller = require('../lib/controllers/controllers');
 const router = express.Router();
-const {auth} = require('../lib/controller/auth')
+const signupHandler = require('../lib/controllers/signupHandler');
+//const loginHandler = require('../lib/controllers/loginHandler');
+const requestHandlers = require('./requestHandlers');
+//const { auth } = require('./controllers/auth');
 
-router.post('/', (req, res) => {
-  console.log('success on index');
-  res.sendFile('../../client/index.html');
-});
+router.post('/signup', signupHandler);
 
+//router.get('/login', loginHandler);
 
-router.post('/signup', controller.signup);
+router.post('/lostitem', requestHandlers.postLostItem);
+// router.post('/founditem', requestHandlers.postFoundItem);
 
-router.post('/login', auth, (null, user) =>{
-  res.send(null , user)
-});
+// router.post('/messages', requestHandlers.postMessages);
+// router.get('/messages', requestHandlers.getMessages);
 
-router.post('/lostitem', (req, res) => {
-  db.lost.create(req.body, (err) => {
-    if (err) throw err;
+// router.get('/matches', requestHandlers.getMatches);
 
-    // must still write here check data base as a call back
-  });
-  res.send('success on post lost item');
-});
-
+// router.get('/dashdata', requestHandlers.getDashData);
 
 module.exports.router = router;
