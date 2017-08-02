@@ -4,62 +4,65 @@ import axios from 'axios';
 class Login extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      username: '',
-      password: '',
+      userAlreadyExists: false,
+    };
+  }
+  handlePost(userObj) {
+    axios({
+      method: 'POST',
+      url: '/login',
+      data: userObj,
+    });
+    alert('POST REQUEST SENT TO SERVER');
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const username = this.refs.username.value;
+    const password = this.refs.password.value;
+    const user = {
+      username,
+      password,
     };
 
-    this.submitLogin = this.submitLogin.bind(this);
-    this.setUsername = this.setUsername.bind(this);
-    this.setPassword = this.setPassword.bind(this);
-  }
+    alert('The username is: ' + username + ' The password is: ' + password);
 
-  setUsername(e) {
-    this.setState({ username: e.target.value });
-  }
+    this.handlePost(user);
 
-  setPassword(e) {
-    this.setState({ password: e.target.value });
-  }
-
-  submitLogin() {
-    axios.get('/user', {
-      params: {
-        username: this.state.username,
-        password: this.state.password,
-      },
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
   }
 
   render() {
     return (
       <div>
-        <h2>Login</h2>
-        <form onSubmit={this.submitLogin}>
-          <p>username</p>
-          <input
-            type="text"
-            name="username"
-            value={this.state.username}
-            onChange={this.setUsername}
-          />
-
-          <p>password</p>
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={this.setPassword}
-          />
-
-          <button type="submit">Submit</button>
+        <h1>Chimp Login</h1>
+          <form>
+            <label>
+              <br />
+                Please enter your username B
+              <br />
+              <input id="inputUsername"
+                     type="text"
+                     placeholder="Enter chimp username"
+                     autoFocus
+                     ref="username"
+              />
+            </label>
+          </form>
+        <form onSubmit={this.handleSubmit.bind(this)} >
+          <label>
+            <br />
+              Bananas for passwords
+            <br />
+            <input id="inputPassword"
+                   type="text"
+                   autoFocus
+                   placeholder="Enter chimp password"
+                   ref="password"
+            />
+          </label>
+          <input type="submit" value="Submit" />
         </form>
       </div>
     );
