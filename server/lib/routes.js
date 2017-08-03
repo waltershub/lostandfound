@@ -9,9 +9,8 @@ const router = express.Router();
 router.post('/signup', signupHandler);
 
 router.get('/login', loginHandler);
-
 router.post('/lostitem', requestHandlers.postLostItem);
-// router.post('/founditem', requestHandlers.postFoundItem);
+router.post('/founditem', requestHandlers.postFoundItem);
 
 router.get('/status', requestHandlers.getStatus);
 
