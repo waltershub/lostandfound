@@ -1,4 +1,8 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt-nodejs');
+const { promisify } = require('bluebird');
+
+const hashPromise = promisify(bcrypt.hash.bind(bcrypt));
 
 const Schema = mongoose.Schema;
 
@@ -8,6 +12,15 @@ const UserSchema = new Schema({
   password: String,
   email: String,
   name: String,
+});
+
+UserSchema.pre('save', function (next) {
+  const model = this;
+  hashPromise(model.password, null, null)
+    .then((hash) => {
+      model.password = hash;
+      next();
+    });
 });
 
 const User = mongoose.model('User', UserSchema);
