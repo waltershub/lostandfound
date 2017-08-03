@@ -8,11 +8,15 @@ const myFoundItems = [
 ];
 
 class FoundItems extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
   render() {
     return (
       <div>
         <h2>Found Items</h2>
-        {myFoundItems.map(item => (
+        {this.props.items.map(item => (
           <FoundItemsEntry
             name={item.name}
             key={item.name}
