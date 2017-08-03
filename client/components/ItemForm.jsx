@@ -28,6 +28,10 @@ class ItemForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    axios.post(`/${this.props.type.toLowerCase()}item`, this.state.itemData)
+      .then((res) => {
+        this.props.setLocation('dash');
+      });
   }
 
   render() {
