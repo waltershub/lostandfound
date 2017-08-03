@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import DashBoard from './DashBoard.jsx';
 import Login from './Login.jsx';
@@ -16,24 +17,29 @@ const fakeAuth = {
 };
 
 class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state ={
+      isLoggedIn: false,
+    };
+
+    this.checkLoggedIn = this.checkLoggedIn.bind(this);
+  }
+
+  checkLoggedIn() {
+    axios.get('/status')
+      .then((status) => {
+        this.setState({ isLoggedIn: status });
+      });
+  }
+
   render() {
-    return (
-      <Router>
-        <div>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              fakeAuth.loggedIn ? (
-                <Redirect to="/dash" />
-              ) : (
-                <Master />
-              )
-            )}
-          />
-          <Route path="/dash" component={DashBoard} />
-        </div>
-      </Router>
+    return this.loggedIn ? (
+      <DashBoard />
+    ) :
+    (
+      <Login />
     );
   }
 }
