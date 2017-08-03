@@ -34,7 +34,7 @@ class ItemForm extends React.Component {
     return (
       <div>
 
-        <h2>{this.type} Item Form</h2>
+        <h2>{this.props.type} Item Form</h2>
 
         <form onSubmit={this.handleSubmit}>
           <p>Item Name:</p>
@@ -82,7 +82,7 @@ class ItemForm extends React.Component {
           <button type="submit">Submit</button>
         </form>
 
-        <button>Cancel</button>
+        <button onClick={this.props.setLocation.bind(this, 'dash')}>Cancel</button>
 
       </div>
     );
