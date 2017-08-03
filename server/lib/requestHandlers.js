@@ -8,3 +8,8 @@ exports.postLostItem = (req, res) => {
   });
   res.send('success on post lost item');
 };
+
+exports.getStatus = (req, res) => {
+  if (req.session.user) res.send(true);
+  else res.send(false);
+};

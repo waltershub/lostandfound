@@ -13,6 +13,8 @@ router.get('/login', loginHandler);
 router.post('/lostitem', requestHandlers.postLostItem);
 // router.post('/founditem', requestHandlers.postFoundItem);
 
+router.get('/status', requestHandlers.getStatus);
+
 // router.post('/messages', requestHandlers.postMessages);
 // router.get('/messages', requestHandlers.getMessages);
 
