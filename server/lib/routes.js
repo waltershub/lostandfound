@@ -14,11 +14,10 @@ router.post('/lostitem', requestHandlers.postLostItem);
 router.post('/founditem', requestHandlers.postFoundItem);
 
 router.get('/status', requestHandlers.getStatus);
-
 // router.post('/messages', requestHandlers.postMessages);
 // router.get('/messages', requestHandlers.getMessages);
 
-// router.get('/matches', requestHandlers.getMatches);
+router.get('/matches', requestHandlers.getMatches);
 
 router.get('/dashdata', dashDataHandler);
 
