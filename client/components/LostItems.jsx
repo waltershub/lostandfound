@@ -27,11 +27,15 @@ const fakeLostItems = [
 ];
 
 class LostItems extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
   render() {
     return (
       <div>
         <h2>Lost Items List</h2>
-        {fakeLostItems.map(elem => (
+        {this.props.items.map(elem => (
           <LostItemsEntry
             itemName={elem.description.name}
             itemColor={elem.description.color}
