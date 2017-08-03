@@ -20,7 +20,7 @@ exports.postFoundItem = (req, res) => {
       // must still write here check data base as a call back
     });
   });
-  res.send('success on post lost item');
+  res.send('success on post found item');
 };
 
 exports.getStatus = (req, res) => {
