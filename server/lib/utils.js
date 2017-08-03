@@ -9,6 +9,6 @@ exports.createNewSession = (req, res, name) => {
   req.session.regenerate((err) => {
     if (err) throw err;
     req.session.user = name;
-    res.redirect('/dashboard');
+    res.send('good session');
   });
 };
