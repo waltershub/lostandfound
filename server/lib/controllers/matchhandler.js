@@ -11,7 +11,7 @@ const objectCompare = (object1, object2) => {
 };
 
 module.exports = (item, status, callback) => {
-  db.status.find({ returned: false })
+  db[status].find({ returned: false })
     .then((data) => {
       data.forEach((object) => {
         if (item.location === object.location && item.name === object.name && objectCompare(item.description, object.description)) {
