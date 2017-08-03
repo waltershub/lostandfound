@@ -6,6 +6,8 @@ import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
 import ItemForm from './ItemForm.jsx';
 import Master from './Master.jsx';
+import Messenger from './Messenger.jsx';
+
 
 class App extends React.Component {
   constructor() {
