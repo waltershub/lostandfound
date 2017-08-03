@@ -1,5 +1,7 @@
 import React from 'react';
-//import axios from 'axios';
+import MessageEntry from './MessageEntry.jsx';
+import axios from 'axios';
+
 
 class Messenger extends React.Component {
   constructor(props) {
@@ -8,33 +10,41 @@ class Messenger extends React.Component {
       messages: [],
       message: '',
     };
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  
+  handlePost(messageObj) {
+    axios({
+      method: 'POST',
+      url: '/items',
+      data: messageObj,
+    });
+  }
+
   handleChange(e) {
-    this.setState({message: e.target.value});
-    console.log('The state of message is now: ', e.target.value);
-    console.log(this.state.message)
+    this.setState({ message: e.target.value });
   }
 
 
   handleSubmit(e) {
     e.preventDefault();
-    var message = this.state.message;
-
-    this.setState( {messages: this.state.messages.concat([message]) });
-
-    console.log('Messages array = ', this.state.messages);
-
-    this.setState( {message: '' });
+    const message = this.state.message;
+    const messageObj = {
+      user_id: 1,
+      loser_id: 2,
+      text: message,
+    };
+    this.setState({ messages: [...this.state.messages, message], message: '' });
   }
 
   render() {
     return (
       <div>
         <h1>Chimp Chat</h1>
+        <div>
+          { this.state.messages.map(function (message) { return <MessageEntry message={message} /> }) }
+        </div>
         <form onSubmit={(event) => {
               this.handleSubmit(event);
             }}>
