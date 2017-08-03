@@ -14,7 +14,7 @@ module.exports = (req, res) => {
         createUserPromise({ username, password });
         createNewSession(req, res, username);
       } else {
-        res.redirect('/signup');
+        res.send('username taken');
       }
     });
 };

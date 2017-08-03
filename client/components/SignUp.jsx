@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const fakeUsers = [
   {
@@ -11,51 +13,55 @@ const fakeUsers = [
     username: 'Walter',
     password: 'walter',
     email: 'walter@walter.com',
-    name: 'WalterShub'
+    name: 'WalterShub',
   },
   {
     username: 'Chao',
     password: 'chao',
     email: 'chao@chao.com',
-    name: 'yuchao'
+    name: 'yuchao',
   }];
 
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'username',
-      password: 'password',
-      email: 'email',
-      name: 'name'
+      username: '',
+      password: '',
+      email: '',
+      name: '',
     };
 
     this.changeHandler = this.changeHandler.bind(this);
+    this.addUser = this.addUser.bind(this);
   }
-  addUser() {
-    axios.post('/SignUp', {
+
+  addUser(e) {
+    e.preventDefault();
+
+    axios.post('/signup', {
       username: this.state.username,
       password: this.state.password,
       email: this.state.email,
-      name: this.state.name
+      name: this.state.name,
     })
-    .then(function(response) {
-      console.log('new user added', response);
-    });
+      .then((response) => {
+        console.log('new user added', response);
+      });
   }
 
   changeHandler(event) {
     const obj = {};
     obj[event.target.name] = event.target.value;
     this.setState(obj);
-    console.log('testing: changed')
+    console.log('testing: changed');
   }
 
   render() {
     return (
       <div>
         <h2>SignUp</h2>
-        <form>
+        <form onSubmit={this.addUser}>
           <input
             type="text"
             name="username"
@@ -84,9 +90,9 @@ class SignUp extends React.Component {
             value={this.state.name}
             onChange={this.changeHandler}
           />
-          <button>SignUp</button>
+          <button type="submit">SignUp</button>
         </form>
-        <button>Back to Homepage</button>
+        <button onClick={this.props.toggleSignUp}>Login</button>
       </div>
     )
   }

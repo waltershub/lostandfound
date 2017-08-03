@@ -1,46 +1,36 @@
 import React from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 import DashBoard from './DashBoard.jsx';
 import Login from './Login.jsx';
+import SignUp from './SignUp.jsx';
 import ItemForm from './ItemForm.jsx';
 import Master from './Master.jsx';
-
-const fakeAuth = {
-  loggedIn: false,
-  login() {
-    this.loggedIn = true;
-  },
-  logout() {
-    this.loggedIn = true;
-  },
-};
 
 class App extends React.Component {
   constructor() {
     super();
 
-    this.state ={
+    this.state = {
       isLoggedIn: false,
     };
 
-    this.checkLoggedIn = this.checkLoggedIn.bind(this);
+    this.checkStatus();
+
+    this.checkStatus = this.checkStatus.bind(this);
   }
 
-  checkLoggedIn() {
+  checkStatus() {
     axios.get('/status')
-      .then((status) => {
-        this.setState({ isLoggedIn: status });
+      .then(({ data }) => {
+        this.setState({ isLoggedIn: data });
       });
   }
 
   render() {
-    return this.loggedIn ? (
-      <DashBoard />
-    ) :
-    (
-      <Login />
-    );
+    return this.state.isLoggedIn ?
+      (<DashBoard />) :
+      (<Login checkStatus={this.checkStatus} />);
   }
 }
 
