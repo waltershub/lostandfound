@@ -1,23 +1,20 @@
-const db = require('../../../db/config');
+const { user } = require('../../../db/config');
+const { promisify } = require('bluebird');
+const { createNewSession } = require('../utils');
 
-const bcrypt = require('bcrypt');
+const findOneUserPromise = promisify(user.findOne.bind(user));
+const createUserPromise = promisify(user.create.bind(user));
 
 module.exports = (req, res) => {
-  const userdata = Object.assign({}, req.body);
-  const username = userdata.username;
-  db.user.findOne({ username }, (err, person) => {
-    if (err) throw err;
-    else if (!person) {
-      bcrypt.hash(userdata.password, 10, (hashErr, hash) => {
-        if (hashErr) throw hashErr;
-        userdata.password = hash;
-        db.user.create(userdata, (error) => {
-          if (error) throw error;
-          res.send('success on sign up post');
-        });
-      });
-    } else {
-      res.send('already exits');
-    }
-  });
+  const username = req.body.username;
+  const password = req.body.password;
+  findOneUserPromise({ username })
+    .then((match) => {
+      if (!match) {
+        createUserPromise({ username, password });
+        createNewSession(req, res, username);
+      } else {
+        res.redirect('/signup');
+      }
+    });
 };

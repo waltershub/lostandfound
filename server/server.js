@@ -2,7 +2,8 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const { router } = require('./lib/routes');
-const passport = require('passport');
+const session = require('express-session');
+
 
 mongoose.connect('mongodb://dbadmin:hrnyc9@ds129053.mlab.com:29053/hrnyc9lostandfound', {
   useMongoClient: true,
@@ -13,8 +14,11 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(session({
+  secret: 'alakazam',
+  resave: false,
+  saveUninitialized: true,
+}));
 
 app.use(express.static('./client'));
 

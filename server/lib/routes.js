@@ -1,13 +1,14 @@
 const express = require('express');
-const router = express.Router();
 const signupHandler = require('../lib/controllers/signupHandler');
-//const loginHandler = require('../lib/controllers/loginHandler');
+const loginHandler = require('../lib/controllers/loginHandler');
 const requestHandlers = require('./requestHandlers');
-//const { auth } = require('./controllers/auth');
+
+const router = express.Router();
+
 
 router.post('/signup', signupHandler);
 
-//router.get('/login', loginHandler);
+router.get('/login', loginHandler);
 
 router.post('/lostitem', requestHandlers.postLostItem);
 // router.post('/founditem', requestHandlers.postFoundItem);
