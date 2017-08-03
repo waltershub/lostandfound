@@ -27,3 +27,20 @@ exports.getStatus = (req, res) => {
   if (req.session.user) res.send(true);
   else res.send(false);
 };
+
+exports.postMessages = (req, res) => {
+  db.messages.create(req.body, (err) => {
+    if (err) throw err;
+
+    // must still write here check data base as a call back
+  });
+  res.send('success on post messages');
+};
+
+exports.getMessages = (req, res) => {
+  // console.log('getMessages', req.body);
+  db.messages.find({}, (err, data) => {
+    if (err) throw err;
+    res.send(data);
+  });
+};
