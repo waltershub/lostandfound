@@ -14,7 +14,7 @@ module.exports = (item, status, callback) => {
   db.status.find({ returned: false })
     .then((data) => {
       data.forEach((object) => {
-        if (objectCompare(item, object)) {
+        if (item.location === object.location && item.name === object.name && objectCompare(item.description, object.description)) {
           item.matches.push(object);
         }
       });
