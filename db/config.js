@@ -29,8 +29,9 @@ module.exports.user = User;
 const LostSchema = new Schema({
   user_id: { type: Schema.Types.ObjectId, ref: 'User' },
   location: String,
+  name: String,
+  matches: Array,
   description: {
-    name: String,
     brand: String,
     color: String,
     condition: Number,
@@ -45,8 +46,9 @@ module.exports.lost = Lost;
 const FoundSchema = new Schema({
   user_id: { type: Schema.Types.ObjectId, ref: 'User' },
   location: String,
+  name: String,
+  matches: Array,
   description: {
-    name: String,
     brand: String,
     color: String,
     condition: Number,
