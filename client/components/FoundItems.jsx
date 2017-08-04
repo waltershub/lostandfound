@@ -13,6 +13,7 @@ class FoundItems extends React.Component {
 
   }
   render() {
+    console.log('found items', this.props.items);
     return (
       <div>
         <h2>Found Items</h2>
