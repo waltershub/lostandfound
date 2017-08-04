@@ -40,7 +40,6 @@ class ItemForm extends React.Component {
       }
     })
       .then(res => this.props.setLocation('dash'));
-      });
   }
 
   render() {
