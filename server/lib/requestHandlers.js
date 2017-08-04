@@ -39,6 +39,27 @@ exports.getStatus = (req, res) => {
   else res.send(false);
 };
 
+
+exports.postMessages = (req, res) => {
+  db.messages.create(req.body, (err) => {
+    if (err) throw err;
+
+    // must still write here check data base as a call back
+  });
+  res.send('success on post messages');
+};
+
+exports.getMessages = (req, res) => {
+  // console.log('getMessages', req.body);
+  getUserId(req.session.user, (userId) => {
+    getUserId(req.query.to_user, (toUserId) => {
+      db.messages.find({ user_id: userId, to_user_id: toUserId })
+        .then(res.send.bind(res));
+    });
+    //WAITING FOR WALTER
+  });
+};
+
 exports.getMatches = (req, res) => {
   req.session.user = req.session.user || 'barney';
   getUserId(req.session.user, (userId) => {

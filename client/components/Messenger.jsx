@@ -3,8 +3,8 @@ import MessageEntry from './MessageEntry.jsx';
 import axios from 'axios';
 
 
-var fake = [{ user_id: 1, loser_id: 2, text: 'message' }, { user_id: 1, loser_id: 2, text: 'hay' }, { user_id: 1, loser_id: 2, text: 'moo' },
-  { user_id: 1, loser_id: 2, text: 'meow' }, { user_id: 1, loser_id: 2, text: 'i need water' }];
+ // var fake = [{ user_id: 1, loser_id: 2, text: 'message' }, { user_id: 1, loser_id: 2, text: 'hay' }, { user_id: 1, loser_id: 2, text: 'moo' },
+ // { user_id: 1, loser_id: 2, text: 'meow' }, { user_id: 1, loser_id: 2, text: 'i need water' }];
 
 
 class Messenger extends React.Component {
@@ -25,26 +25,29 @@ class Messenger extends React.Component {
   }
   //CHANGE TO POST TO SERVER
   handlePost(messageObj) {
-    fake.push(messageObj);
-    console.log('fake data is ', fake);
-    // axios({
-    //   method: 'POST',
-    //   url: '/messages',
-    //   data: messageObj,
-    // });
-    console.log('messgae obj here', messageObj);
+    //fake.push(messageObj);
+    //console.log('fake data is ', fake);
+    axios({
+      method: 'POST',
+      url: '/messages',
+      data: messageObj,
+    });
+    //console.log('messgae obj here', messageObj);
     this.handleGet();
   }
   //CHANGE TO GET FROM SERVER
   handleGet() {
-    this.setState({ messages: [...fake] });
-    // axios({
-    //   method:'GET',
-    //   url: '/messages'
-    // })
-    // .then(function(res) {
-
-    // })
+    // this.setState({ messages: [...fake] });
+    axios({
+      method:'GET',
+      url: '/messages',
+      params: {
+        to_user: '420'
+      }
+    })
+    .then((res) => {
+      console.log('res.data in handleGet', res.data)
+    })
   }
 
   handleChange(e) {
