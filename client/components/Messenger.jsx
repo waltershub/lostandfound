@@ -40,7 +40,10 @@ class Messenger extends React.Component {
     // this.setState({ messages: [...fake] });
     axios({
       method:'GET',
-      url: '/messages'
+      url: '/messages',
+      params: {
+        to_user: '420'
+      }
     })
     .then((res) => {
       console.log('res.data in handleGet', res.data)

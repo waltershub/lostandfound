@@ -51,9 +51,12 @@ exports.postMessages = (req, res) => {
 
 exports.getMessages = (req, res) => {
   // console.log('getMessages', req.body);
-  db.messages.find({}, (err, data) => {
-    if (err) throw err;
-    res.send(data);
+  getUserId(req.session.user, (userId) => {
+    getUserId(req.query.to_user, (toUserId) => {
+      db.messages.find({ user_id: userId, to_user_id: toUserId })
+        .then(res.send.bind(res));
+    });
+    //WAITING FOR WALTER
   });
 };
 
@@ -64,6 +67,6 @@ exports.getMatches = (req, res) => {
       .then((data) => {
         data = data.filter(item => item.matches.length > 0);
         res.send(data);
-    });
+      });
   });
 };
