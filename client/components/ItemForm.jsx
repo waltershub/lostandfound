@@ -20,17 +20,26 @@ class ItemForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange({ target }) {
+  handleChange(e) {
+    const target = e.target;
     const obj = {};
     obj[target.name] = target.value;
-    this.setState(obj);
+    this.setState({ itemData: obj });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    axios.post(`/${this.props.type.toLowerCase()}item`, this.state.itemData)
-      .then((res) => {
-        this.props.setLocation('dash');
+    axios.post(`/${this.props.type.toLowerCase()}item`, {
+      name: this.state.itemData.name,
+      location: this.state.itemData.location,
+      description: {
+        brand: this.state.itemData.brand,
+        color: this.state.itemData.color,
+        condition: this.state.itemData.condition,
+        size: this.state.itemData.size,
+      }
+    })
+      .then(res => this.props.setLocation('dash'));
       });
   }
 
